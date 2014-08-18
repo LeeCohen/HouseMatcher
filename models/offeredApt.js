@@ -5,4 +5,4 @@ var aptSchema = new Schema({
   city: String
 });
 
-module.exports = mongoose.model('offeredApt', aptSchema, 'project.apts');
+module.exports = mongoose.model('offeredApt', aptSchema, 'project.offeredApts');

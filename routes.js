@@ -1,5 +1,6 @@
 var User = require('./models/user.js');
-var Apt = require('./models/apt.js');
+var DesiredApt = require('./models/desiredApt.js');
+var OfferedApt = require('./models/offeredApt.js');
 
 module.exports = function (app) {
     // set up routes
@@ -8,21 +9,20 @@ module.exports = function (app) {
     });
 
     app.get('/users', function(req, res) {
- 		// User.find({}, function(err, docs) {
-   //  		res.json(docs);
-   //  	});
-
-		 User
-		.find({})
-		.limit(10)
-		.exec(function(err, docs) {
-     		res.json(docs);
-     	});
+ 		User.find({}, function(err, docs) {
+    		res.json(docs);
+    	});
     });
 
-    app.get('/apts', function(req, res) {
+    app.get('/desiredApts', function(req, res) {
  		Apt.find({}, function(err, docs) {
     		res.json(docs);
     	});
+    });
+
+    app.get('/offeredApts', function(req, res) {
+        Apt.find({}, function(err, docs) {
+            res.json(docs);
+        });
     });
 };
