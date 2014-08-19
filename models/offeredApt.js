@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var OfferedAptSchema = new Schema({
-  	creator : { type: Schema.ObjectId, ref: 'Users'},
-	city: {type: String, required: true},
+  	Creator : { type: Schema.ObjectId, ref: 'Users'},
+	City: {type: String, required: true},
 	Neighborhood: {type: String},
 	Street: {type: String, required: true},
 	HouseNumber: {type: Number},

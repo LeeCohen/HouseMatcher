@@ -45,9 +45,13 @@ module.exports = function (app, passport) {
     app.post('/createNewOfferedApt', function(req, res) {
       var newOfferedApt = {};
 
-      console.log(req.body.city);
+      console.log(req.body.City);
 
-      newOfferedApt.city = req.body.city;
+      newOfferedApt.City = req.body.City;
+      newOfferedApt.Rooms = req.body.Rooms;
+      newOfferedApt.Street = req.body.Street;
+      newOfferedApt.Price = req.body.Price;
+
 
       var newOfferedAptInstance = new OfferedApt(newOfferedApt);
 
