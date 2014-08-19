@@ -3,43 +3,44 @@ var crypto = require('crypto');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
-passport.use(new LocalStrategy(function(username, password, done){
-    User.findOne({username : username},function(err,user) {
-		if(err) {
-			return done(err);
-		}
+// passport setup
+module.exports = function (passport) {
+	passport.use(new LocalStrategy(function(username, password, next){
+	    User.findOne({username : username},function(err,user) {
+			if(err) {
+				return next(err);
+			}
 
-	    if(!user) {
-	            return done(null, false, { message: 'Incorrect username.' });
-	    }
+		    if(!user) {
+		            return next(null, false, { message: 'Incorrect username.' });
+		    }
 
-	    var hash = crypto.createHash('sha1');
-		hash.update(password);
-		var result = hash.digest('hex');
+		    var hash = crypto.createHash('sha1');
+			hash.update(password);
+			var result = hash.digest('hex');
 
-		if (result == user.hash) {
-	        	return done(null, user._id);
-	    }
+			if (result === user.hashed_password) {
+		        	return next(null, user._id);
+		    }
 
-	    else {
-	    	done(null, false, { message: 'Incorrect password.' });
-	    }
+		    else {
+		    	next(null, false, { message: 'Incorrect password.' });
+		    }
 
-    });
-}));
+	    });
+	}));
 
+	passport.serializeUser(function(user, next) {
+		next(null, user);
+	});
 
-
-passport.serializeUser(function(user, done) {
-	done(null, user);
-});
-
-passport.deserializeUser(function(id, done) {
-    Users.findById(id, function(err,user){        
-        if(err) {
-        	done(err);
-        }
-        
-    	done(null,user);
-    });
-});
+	passport.deserializeUser(function(id, next) {
+	    User.findById(id, function(err,user){        
+	        if(err) {
+	        	next(err);
+	        }
+	        
+	    	next(null,user);
+	    });
+	});
+}

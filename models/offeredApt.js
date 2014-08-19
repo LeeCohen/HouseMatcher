@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var OfferdAptSchema = new Schema({
-  	creator : { type: Schema.ObjectId, ref: 'Users' 
+var OfferedAptSchema = new Schema({
+  	creator : { type: Schema.ObjectId, ref: 'Users'},
 	city: {type: String, required: true},
 	Neighborhood: {type: String},
 	Street: {type: String},
@@ -15,8 +15,7 @@ var OfferdAptSchema = new Schema({
 	Elevator: {type: Number},
 	Pets: {type: Number},
 	Published_Date: {type: Date},
-	Picture : [String],
-	Valid,
+	Picture : [String]
 });
 
 module.exports = mongoose.model('OfferedApt', OfferedAptSchema, 'project.OfferedApt');
