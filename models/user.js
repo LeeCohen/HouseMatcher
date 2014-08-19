@@ -11,7 +11,7 @@ var UsersSchema = new Schema({
   hashed_password: {type: String, required: true},
   email: {type: String, required: true, validate: emailValidator},
   Phone_Number: {type: String, required: true},
-  First_name: {type: String, required: true},
+  First_name: {type: String, required: true}
 });
 
 module.exports = mongoose.model('Users', UsersSchema, 'project.Users');

@@ -16,8 +16,7 @@ module.exports = function (app, passport) {
 
     app.post('/login',
         passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login',
-                                   failureFlash: true })
+                                   failureRedirect: '/login'})
     );
 
      // app.get("/", function (req, res) {
@@ -25,11 +24,11 @@ module.exports = function (app, passport) {
      // });
 
 
-   //  app.get('/users', function(req, res) {
- 		// User.find({}, function(err, docs) {
-   //  		res.json(docs);
-   //  	});
-   //  });
+    app.get('/users', function(req, res) {
+ 		User.find({}, function(err, docs) {
+    		res.json(docs);
+    	});
+    });
 
    //  app.get('/desiredApts', function(req, res) {
  		// Apt.find({}, function(err, docs) {
