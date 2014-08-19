@@ -18,4 +18,4 @@ var OfferedAptSchema = new Schema({
 	Picture : [String]
 });
 
-module.exports = mongoose.model('OfferedApt', OfferedAptSchema, 'project.OfferedApt');
+module.exports = mongoose.model('OfferedApt', OfferedAptSchema, 'project.OfferedApts');

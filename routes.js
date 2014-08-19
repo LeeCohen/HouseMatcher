@@ -15,7 +15,7 @@ module.exports = function (app, passport) {
     });
 
     app.post('/login',
-        passport.authenticate('local', { successRedirect: '/',
+        passport.authenticate('local', { successRedirect: '/users',
                                    failureRedirect: '/login'})
     );
 
@@ -41,8 +41,26 @@ module.exports = function (app, passport) {
    //          res.json(docs);
    //      });
    //  });
-};
 
+    app.post('/createNewOfferedApt', function(req, res) {
+      var newOfferedApt = {};
+
+      console.log(req.body.city);
+
+      newOfferedApt.city = req.body.city;
+
+      var newOfferedAptInstance = new OfferedApt(newOfferedApt);
+
+      newOfferedAptInstance.save(function(error, data){
+        if(error){
+            res.json(error);
+        }
+        else{
+            res.json(data);
+        }
+      });
+    });
+}
 
 function ensureAuthenticated(req, res, next) {
     if (req.isAuthenticated()) {
