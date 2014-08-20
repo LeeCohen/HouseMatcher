@@ -31,32 +31,18 @@ module.exports = function (app, passport) {
     	});
     });
 
-   //  app.get('/desiredApts', function(req, res) {
- 		// Apt.find({}, function(err, docs) {
-   //  		res.json(docs);
-   //  	});
-   //  });
+  app.post('/createNewUser', function(req, res) {
+      var newUser = {};
 
-   //  app.get('/offeredApts', function(req, res) {
-   //      Apt.find({}, function(err, docs) {
-   //          res.json(docs);
-   //      });
-   //  });
+      console.log("OBJECT INOFRMATION FOR INSERTING NEW USER");
+      for (var object in req.body){
+        console.log(req.body[object]); // printing name of object for server debugging
+        newUser[object] = req.body[object];
+      }
 
-    app.post('/createNewOfferedApt', function(req, res) {
-      var newOfferedApt = {};
+      var User = new User(newUser);
 
-      console.log(req.body.City);
-
-      newOfferedApt.City = req.body.City;
-      newOfferedApt.Rooms = req.body.Rooms;
-      newOfferedApt.Street = req.body.Street;
-      newOfferedApt.Price = req.body.Price;
-
-
-      var newOfferedAptInstance = new OfferedApt(newOfferedApt);
-
-      newOfferedAptInstance.save(function(error, data){
+      newUserInstance.save(function(error, data){
         if(error){
             res.json(error);
         }
@@ -65,6 +51,57 @@ module.exports = function (app, passport) {
         }
       });
     });
+   //  app.get('/desiredApts', function(req, res) {
+    // Apt.find({}, function(err, docs) {
+   //     res.json(docs);
+   //   });
+   //  });
+  app.post('/createNewDesiredApt', function(req, res) {
+    var newDesiredApt = {};
+
+    console.log("OBJECT INOFRMATION FOR INSERTING NEW DISRED APT");
+    for (var object in req.body){
+      console.log(req.body[object]); // printing name of object for server debugging
+      newDesiredApt[object] = req.body[object];
+    }
+
+    var newDesiredAptInstance = new DesiredApt(newDesiredApt);
+
+    newDesiredAptInstance.save(function(error, data){
+      if(error){
+          res.json(error);
+      }
+      else{
+          res.json(data);
+      }
+    });
+  });
+   //  app.get('/offeredApts', function(req, res) {
+   //      Apt.find({}, function(err, docs) {
+   //          res.json(docs);
+   //      });
+   //  });
+
+  app.post('/createNewOfferedApt', function(req, res) {
+    var newOfferedApt = {};
+
+    console.log("OBJECT INOFRMATION FOR INSERTING NEW OFFERED APT");
+    for (var object in req.body){
+      console.log(req.body[object]); // printing name of object for server debugging
+      newOfferedApt[object] = req.body[object];
+    }
+
+    var newOfferedAptInstance = new OfferedApt(newOfferedApt);
+
+    newOfferedAptInstance.save(function(error, data){
+      if(error){
+          res.json(error);
+      }
+      else{
+          res.json(data);
+      }
+    });
+  });
 }
 
 function ensureAuthenticated(req, res, next) {

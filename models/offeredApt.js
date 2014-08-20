@@ -11,9 +11,9 @@ var OfferedAptSchema = new Schema({
 	Size: {type: Number},
 	Rooms: {type: Number, required: true},
 	Level: {type: Number},
-	Parking: {type: Number},
-	Elevator: {type: Number},
-	Pets: {type: Number},
+	Parking: {type: String},
+	Elevator: {type: String},
+	Pets: {type: String},
 	Published_Date: {type: Date},
 	Picture : [String]
 });
