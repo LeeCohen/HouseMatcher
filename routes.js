@@ -40,7 +40,7 @@ module.exports = function (app, passport) {
       newUser[object] = req.body[object];
     }
 
-    var User = new User(newUser);
+    var newUserInstance = new User(newUser);
 
     newUserInstance.save(function(error, data){
       if(error){
