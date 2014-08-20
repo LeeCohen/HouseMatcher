@@ -3,54 +3,54 @@ var DesiredApt = require('./models/desiredApt.js');
 var OfferedApt = require('./models/offeredApt.js');
 
 module.exports = function (app, passport) {
-    require('./login.js')(passport);
+  require('./login.js')(passport);
 
-    // set up routes
-    app.get("/", ensureAuthenticated, function (req, res) {
-        res.send("Hello World");
-    });
+  // set up routes
+  app.get("/", ensureAuthenticated, function (req, res) {
+      res.send("Hello World");
+  });
 
-    app.get('/login', function(req, res) {
+  app.get('/login', function(req, res) {
 
-        res.sendfile('./public/login.htm');
-    });
+      res.sendfile('./public/login.htm');
+  });
 
-    app.post('/login',
-        passport.authenticate('local', { successRedirect: '/',
-                                   failureRedirect: '/login'})
-    );
+  app.post('/login',
+      passport.authenticate('local', { successRedirect: '/',
+                                 failureRedirect: '/login'})
+  );
 
-     // app.get("/", function (req, res) {
-     //     res.send("Hello World");
-     // });
+   // app.get("/", function (req, res) {
+   //     res.send("Hello World");
+   // });
 
 
-    app.get('/users',ensureAuthenticated, function(req, res) {
- 		User.find({}, function(err, docs) {
-    		res.json(docs);
-    	});
-    });
+  app.get('/users',ensureAuthenticated, function(req, res) {
+		User.find({}, function(err, docs) {
+  		res.json(docs);
+  	});
+  });
 
   app.post('/createNewUser', function(req, res) {
-      var newUser = {};
+    var newUser = {};
 
-      console.log("OBJECT INOFRMATION FOR INSERTING NEW USER");
-      for (var object in req.body){
-        console.log(req.body[object]); // printing name of object for server debugging
-        newUser[object] = req.body[object];
+    console.log("OBJECT INOFRMATION FOR INSERTING NEW USER");
+    for (var object in req.body){
+      console.log(req.body[object]); // printing name of object for server debugging
+      newUser[object] = req.body[object];
+    }
+
+    var User = new User(newUser);
+
+    newUserInstance.save(function(error, data){
+      if(error){
+          res.json(error);
       }
-
-      var User = new User(newUser);
-
-      newUserInstance.save(function(error, data){
-        if(error){
-            res.json(error);
-        }
-        else{
-            res.json(data);
-        }
-      });
+      else{
+          res.json(data);
+      }
     });
+  });
    //  app.get('/desiredApts', function(req, res) {
     // Apt.find({}, function(err, docs) {
    //     res.json(docs);
