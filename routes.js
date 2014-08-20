@@ -87,7 +87,7 @@ module.exports = function (app, passport) {
 
     console.log("OBJECT INOFRMATION FOR INSERTING NEW OFFERED APT");
     for (var object in req.body){
-      console.log(req.body[object]); // printing name of object for server debugging
+      console.log(object +': ' + req.body[object]); // printing name of object for server debugging
       newOfferedApt[object] = req.body[object];
     }
 
