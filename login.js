@@ -14,21 +14,19 @@ module.exports = function (passport) {
 			}
 
 		    if(!user) {
-		    		console.log("!user");
+		    		console.log("user not found");
 		            return next(null, false);
 		    }
 
-		    var hash = crypto.createHash('sha1');
-			hash.update(password);
-			var result = hash.digest('hex');
+			var hashed_password = hash('sha1', password);
 
-			if (result == user.hashed_password) {
+			if (hashed_password == user.hashed_password) {
 				console.log("success");
-	        	return next(null, user._id);
+	        	return next(null, user);
 		    }
 
 		    else {
-		    	console.log("fail");
+		    	console.log("incorrect password");
 		    	next(null, false);
 		    }
 	    });
@@ -38,13 +36,13 @@ module.exports = function (passport) {
 		next(null, user);
 	});
 
-	passport.deserializeUser(function(id, next) {
-	    User.findById(id, function(err,user){        
-	        if(err) {
-	        	next(err);
-	        }
-	        
-	    	next(null,user);
-	    });
+	passport.deserializeUser(function(user, next) {
+		next(null, user);
 	});
+}
+
+function hash(method, password) {
+	var hash = crypto.createHash(method);
+	hash.update(password);
+	return hash.digest('hex');
 }

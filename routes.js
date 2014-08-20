@@ -11,11 +11,12 @@ module.exports = function (app, passport) {
     });
 
     app.get('/login', function(req, res) {
+
         res.sendfile('./public/login.htm');
     });
 
     app.post('/login',
-        passport.authenticate('local', { successRedirect: '/users',
+        passport.authenticate('local', { successRedirect: '/',
                                    failureRedirect: '/login'})
     );
 
@@ -24,7 +25,7 @@ module.exports = function (app, passport) {
      // });
 
 
-    app.get('/users', function(req, res) {
+    app.get('/users',ensureAuthenticated, function(req, res) {
  		User.find({}, function(err, docs) {
     		res.json(docs);
     	});
@@ -71,5 +72,6 @@ function ensureAuthenticated(req, res, next) {
         return next();
     }
 
+    console.log("inside ensureAuthenticated, redirecting to login");
     res.redirect('/login');
 }
