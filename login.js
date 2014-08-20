@@ -18,7 +18,7 @@ module.exports = function (passport) {
 		            return next(null, false);
 		    }
 
-			var hashed_password = hash('sha1', password);
+			var hashed_password = calcHash('sha1', password);
 
 			if (hashed_password == user.hashed_password) {
 				console.log("success");
@@ -41,8 +41,8 @@ module.exports = function (passport) {
 	});
 }
 
-function hash(method, password) {
-	var hash = crypto.createHash(method);
+function calcHash(algorithm, password) {
+	var hash = crypto.createHash(algorithm);
 	hash.update(password);
 	return hash.digest('hex');
 }
