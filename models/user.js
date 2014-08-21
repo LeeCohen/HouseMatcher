@@ -7,7 +7,10 @@ var UsersSchema = new Schema({
   Email: {type: String, required: true},
   Phone_Number: {type: String, required: true},
   First_name: {type: String, required: true},
-  First_name: {type: String, required: true}
+  First_name: {type: String, required: true},
+  OfferdApts: [Schema.ObjectId],
+  DesiredApts: [Schema.ObjectId],
+  LikedDesiredApts:[Schema.ObjectId]
 });
 
 module.exports = mongoose.model('Users', UsersSchema, 'project.Users');
