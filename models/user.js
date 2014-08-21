@@ -8,9 +8,10 @@ function emailValidator(elementValue){
 
 var UsersSchema = new Schema({
   username: {type: String, required: true},
-  hashed_password: {type: String, required: true},
-  email: {type: String, required: true, validate: emailValidator},
+  Hashed_password: {type: String, required: true},
+  Email: {type: String, required: true, validate: emailValidator},
   Phone_Number: {type: String, required: true},
+  First_name: {type: String, required: true},
   First_name: {type: String, required: true}
 });
 
