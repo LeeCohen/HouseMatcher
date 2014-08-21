@@ -10,7 +10,7 @@ var UsersSchema = new Schema({
   First_name: {type: String, required: true},
   OfferdApts: [Schema.ObjectId],
   DesiredApts: [Schema.ObjectId],
-  LikedDesiredApts:[Schema.ObjectId]
+  LikedApts:[Schema.ObjectId]
 });
 
 module.exports = mongoose.model('Users', UsersSchema, 'project.Users');
