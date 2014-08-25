@@ -1,8 +1,11 @@
 var request = require('request');
 
-request.put({
-  url:     'http://localhost:3000/users/53f5baa97c562b387887b3c9',
-  form:    {	food: "pizza"}
+request.post({
+  url:     'http://localhost:3000/offeredApts/',
+  form:    {	City: "Ramat-Gan",
+				Street: "Negba",
+				Price: 3500,
+				Rooms: 2}
 		   
 }, function(error, response, body){
   console.log(body);

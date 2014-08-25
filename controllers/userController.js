@@ -1,29 +1,27 @@
 var User = require('../models/user.js');
+var db = require('../db.js');
+var utils = require('../utils.js');
 
 exports.findAll = function(req, res) {
-	User.find({}, function(err, docs) {
+	var findAllCallback = function(err, docs) {
 		res.json(docs);
-	});
+	}
+
+	db.findAll(User, findAllCallback);
 }
 
 exports.findById = function(req, res) {
-	User.findOne({ _id: req.params.userId }, function(err, doc) {
+	var findByIdCallback = function(err, doc) {
 		res.json(doc);
-	});
+	}
+
+	db.findById(User, req.params.userId, findByIdCallback);
 }
 
-exports.createNewUser = function(req, res) {
-    var newUser = {};
+exports.createNew = function(req, res) {
+    var newUserInstance = new User(utils.buildNewObjFromReq(req));
 
-    console.log("OBJECT INOFRMATION FOR INSERTING NEW USER");
-    for (var object in req.body){
-		console.log(req.body[object]); // printing name of object for server debugging
-		newUser[object] = req.body[object];
-    }
-
-    var newUserInstance = new User(newUser);
-
-    newUserInstance.save(function(error, data){
+    var createNewCallback = function(error, data){
 		if(error){
 		  res.json(error);
 		}
@@ -31,7 +29,9 @@ exports.createNewUser = function(req, res) {
 		else{
 		  res.json(data);
 		}
-    });
+    }
+
+    db.createNew(newUserInstance, createNewCallback);
 }
 
 exports.editUser = function(req, res) {
@@ -42,3 +42,16 @@ exports.editUser = function(req, res) {
 		res.json(doc);
 	});
 }
+
+exports.deleteUser = function(req, res) {
+	User.remove({ _id: req.params.userId }, function(err) {
+		if(err) {
+			res.json(err);
+		}
+
+		else {
+			res.json('removed successfully');
+		}
+	});
+}
+

@@ -5,6 +5,7 @@ var OfferedApt = require('./models/offeredApt.js');
 
 // include controllers
 var userController = require('./controllers/userController.js');
+var offeredAptsController = require('./controllers/offeredAptsController.js');
 
 module.exports = function (app, passport) {
   require('./login.js')(passport);
@@ -15,7 +16,6 @@ module.exports = function (app, passport) {
   });
 
   app.get('/login', function(req, res) {
-
       res.sendfile('./public/login.htm');
   });
 
@@ -28,11 +28,13 @@ module.exports = function (app, passport) {
 
   app.get('/users',ensureAuthenticated, userController.findAll);
 
-  app.post('/users', ensureAuthenticated, userController.createNewUser);
+  app.post('/users', userController.createNew);
 
   app.get('/users/:userId', ensureAuthenticated, userController.findById);
 
   app.put('/users/:userId', userController.editUser);
+
+  app.delete('/users/:userId', userController.deleteUser);
 
 
 ////////////////////// desired apts ////////////////////////////////
@@ -41,52 +43,39 @@ module.exports = function (app, passport) {
    //     res.json(docs);
    //   });
    //  });
-  app.post('/createNewDesiredApt', function(req, res) {
-    var newDesiredApt = {};
+  // app.post('/createNewDesiredApt', function(req, res) {
+  //   var newDesiredApt = {};
 
-    console.log("OBJECT INOFRMATION FOR INSERTING NEW DISRED APT");
-    for (var object in req.body){
-      console.log(req.body[object]); // printing name of object for server debugging
-      newDesiredApt[object] = req.body[object];
-    }
+  //   console.log("OBJECT INOFRMATION FOR INSERTING NEW DISRED APT");
+  //   for (var object in req.body){
+  //     console.log(req.body[object]); // printing name of object for server debugging
+  //     newDesiredApt[object] = req.body[object];
+  //   }
 
-    var newDesiredAptInstance = new DesiredApt(newDesiredApt);
+  //   var newDesiredAptInstance = new DesiredApt(newDesiredApt);
 
-    newDesiredAptInstance.save(function(error, data){
-      if(error){
-          res.json(error);
-      }
-      else{
-          res.json(data);
-      }
-    });
-  });
+  //   newDesiredAptInstance.save(function(error, data){
+  //     if(error){
+  //         res.json(error);
+  //     }
+  //     else{
+  //         res.json(data);
+  //     }
+  //   });
+  // });
    //  app.get('/offeredApts', function(req, res) {
    //      Apt.find({}, function(err, docs) {
    //          res.json(docs);
    //      });
    //  });
 
-  app.post('/createNewOfferedApt', function(req, res) {
-    var newOfferedApt = {};
+////////////////////// offered apts ////////////////////////////////
 
-    console.log("OBJECT INOFRMATION FOR INSERTING NEW OFFERED APT");
-    for (var object in req.body){
-      console.log(object +': ' + req.body[object]); // printing name of object for server debugging
-      newOfferedApt[object] = req.body[object];
-    }
+  app.get('/offeredApts', ensureAuthenticated, offeredAptsController.findAll);
 
-    var newOfferedAptInstance = new OfferedApt(newOfferedApt);
+  app.post('/offeredApts', offeredAptsController.createNew);
 
-    newOfferedAptInstance.save(function(error, data){
-      if(error){
-          res.json(error);
-      }
-      else{
-          res.json(data);
-      }
-    });
-  });
+  app.get('/getRecentOfferedApts', offeredAptsController.getRecentOfferedApts);
 }
 
 function ensureAuthenticated(req, res, next) {
