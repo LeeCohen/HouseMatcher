@@ -13,7 +13,11 @@ exports.findAll = function(req, res) {
 exports.createNew = function(req, res) {
     var newOfferedAptInstance = new OfferedApt(utils.buildNewObjFromReq(req));
 
-    appendPicturesToNewInstance(req, newOfferedAptInstance);
+    if(req.files.Pictures) {
+    	// if pictures were sent
+    	appendPicturesToNewInstance(req, newOfferedAptInstance);
+    }
+
     var createNewCallback = function(error, data){
 		if(error) {
 		  res.json(error);
@@ -61,4 +65,17 @@ function appendPicturesToNewInstance(req, newInstance) {
 
 function pushToPicturesArr(picturesArr, pathString) {
 	picturesArr.push(pathString.replace(/uploads\\/g, '/'));
+}
+
+exports.searchOfferedApts = function(req, res) {
+	var desiredApt = utils.buildNewObjFromReq(req); // query from the user
+	var query = OfferedApt.find();
+
+	for(key in desiredApt) {
+		query.where(key).equals(desiredApt[key]);
+	}
+
+	query.exec(function(err, docs){
+		res.json(docs);
+	});
 }

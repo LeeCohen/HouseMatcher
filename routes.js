@@ -77,8 +77,19 @@ module.exports = function (app, passport) {
 
   app.get('/getRecentOfferedApts', offeredAptsController.getRecentOfferedApts);
 
-  app.post('/bla', function(req, res) {
-    res.json(req.files);
+  app.post('/searchOfferedApts', offeredAptsController.searchOfferedApts)
+
+  app.get('/bla', function(req, res) {
+    var _City = "Tel Aviv";
+    var _Street = "Amos";
+    var callback = function(err, docs) {
+      res.json(docs);
+    }
+
+    OfferedApt
+    .find({City: _City })
+    .where('Street').equals(_Street)
+    .exec(callback);
   })
 }
 

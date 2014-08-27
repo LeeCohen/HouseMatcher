@@ -19,11 +19,11 @@ var DesiredAptSchema = new mongoose.Schema({
 	SafeRoom: {type: String},
 	Balcony: {type: String},
 	WindowsBars: {type: String},
+	Pets: {type: Number},
 	Furniture: {type: String},
 	AirConditioning: {type: String},
 	SunBoiler: {type: String},
-	Pets: {type: Number},
-	Published_Date: {type: Date},
+	Published_Date: {type: Date}
 });
 
 module.exports = mongoose.model('DesiredApt', DesiredAptSchema, 'project.DesiredApts');

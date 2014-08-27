@@ -2,19 +2,22 @@
 <HTML>
    <HEAD>
       <TITLE>
-         OfferedApts
+         A Small Hello 
       </TITLE>
    </HEAD>
 <BODY>
-   <form method="post" enctype="multipart/form-data" action="http://localhost:3000/offeredApts">
+   <form method="post" enctype="multipart/form-data" action="http://localhost:3000/desiredApts">
    <br/>City: <input type="text" name="City"/>
    <br/>Neighborhood: <input type="text" name="Neighborhood"/>
    <br/>Street: <input type="text" name="Street"/>
-   <br/>HouseNumber: <input type="number" name="HouseNumber"/>
-   <br/>Price: <input type="number" name="Price"/>
+   <br/>From HouseNumber: <input type="number" name="FromHouseNumber"/>
+   <br/>To HouseNumber: <input type="number" name="ToHouseNumber"/>
+   <br/>Max Price: <input type="number" name="MaxPrice"/>
    <br/>Size: <input type="number" name="Size"/>
-   <br/>Rooms: <input type="number" name="Rooms"/>
-   <br/>Floor: <input type="number" name="Floor"/>
+   <br/>Min Rooms: <input type="number" name="MinRooms"/>
+   <br/>Max Rooms: <input type="number" name="MaxRooms"/>
+   <br/>Min Floor: <input type="number" name="MinFloor"/>
+   <br/>Max Floor: <input type="number" name="MaxFloor"/>
    <br/>Parking: <input type="checkbox" name="Parking"/>
    <br/>Elevator: <input type="checkbox" name="Elevator"/>
    <br/>SafeRoom: <input type="checkbox" name="SafeRoom"/>
@@ -24,8 +27,7 @@
    <br/>Furniture: <input type="checkbox" name="Furniture"/>
    <br/>AirConditioning: <input type="checkbox" name="AirConditioning"/>
    <br/>SunBoiler: <input type="checkbox" name="SunBoiler"/>
-   <br/>Pictures: <input type="file" name="Pictures" multiple/>
-   <br/><input type="submit"/>
+   <br/><input type="submit"/>   
    </form>
 </BODY>
 </HTML>

@@ -6,18 +6,18 @@
       </TITLE>
    </HEAD>
 <BODY>
-   <form method="post" action="">
+   <form method="post" enctype="multipart/form-data" action="http://localhost:3000/searchOfferedApts">
    <br/>City: <input type="text" name="City"/>
    <br/>Neighborhood: <input type="text" name="Neighborhood"/>
    <br/>Street: <input type="text" name="Street"/>
-   <br/>HouseNumber: <input type="number" name="HouseNumber"/>
-   <br/>MaxPrice: <input type="number" name="MaxPrice"/>
-   <br/>Size_Max: <input type="number" name="Size_Max"/>
-   <br/>Size_Min: <input type="number" name="Size_Min"/>
-   <br/>Rooms_Max: <input type="number" name="Rooms_Max"/>
-   <br/>Rooms_Min: <input type="number" name="Rooms_Min"/>
-   <br/>Floor_Max: <input type="number" name="Floor_Max"/>
-   <br/>Floor_Min: <input type="number" name="Floor_Min"/>
+   <br/>From HouseNumber: <input type="number" name="FromHouseNumber"/>
+   <br/>To HouseNumber: <input type="number" name="ToHouseNumber"/>
+   <br/>Max Price: <input type="number" name="MaxPrice"/>
+   <br/>Size: <input type="number" name="Size"/>
+   <br/>Min Rooms: <input type="number" name="MinRooms"/>
+   <br/>Max Rooms: <input type="number" name="MaxRooms"/>
+   <br/>Min Floor: <input type="number" name="MinFloor"/>
+   <br/>Max Floor: <input type="number" name="MaxFloor"/>
    <br/>Parking: <input type="checkbox" name="Parking"/>
    <br/>Elevator: <input type="checkbox" name="Elevator"/>
    <br/>SafeRoom: <input type="checkbox" name="SafeRoom"/>
@@ -27,7 +27,7 @@
    <br/>Furniture: <input type="checkbox" name="Furniture"/>
    <br/>AirConditioning: <input type="checkbox" name="AirConditioning"/>
    <br/>SunBoiler: <input type="checkbox" name="SunBoiler"/>
-   <br/><input type="submit"/>
+   <br/><input type="submit"/>   
    </form>
 </BODY>
 </HTML>
