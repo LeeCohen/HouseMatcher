@@ -21,7 +21,7 @@ var OfferedAptSchema = new Schema({
 	SunBoiler: {type: String},
 	Pets: {type: String},
 	Published_Date: {type: Date},
-	Picture : [String]
+	Pictures : [String]
 });
 
 module.exports = mongoose.model('OfferedApt', OfferedAptSchema, 'project.OfferedApts');

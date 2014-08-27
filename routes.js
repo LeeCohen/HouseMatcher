@@ -76,6 +76,10 @@ module.exports = function (app, passport) {
   app.post('/offeredApts', offeredAptsController.createNew);
 
   app.get('/getRecentOfferedApts', offeredAptsController.getRecentOfferedApts);
+
+  app.post('/bla', function(req, res) {
+    res.json(req.files);
+  })
 }
 
 function ensureAuthenticated(req, res, next) {

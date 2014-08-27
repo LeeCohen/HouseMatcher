@@ -13,12 +13,13 @@ exports.findAll = function(req, res) {
 exports.createNew = function(req, res) {
     var newOfferedAptInstance = new OfferedApt(utils.buildNewObjFromReq(req));
 
+    appendPicturesToNewInstance(req, newOfferedAptInstance);
     var createNewCallback = function(error, data){
-		if(error){
+		if(error) {
 		  res.json(error);
 		}
 
-		else{
+		else {
 		  res.json(data);
 		}
     }
@@ -39,4 +40,25 @@ exports.getRecentOfferedApts = function(req, res) {
 
 	db.getRecentApts(OfferedApt, getRecentCallback);
 
+}
+
+function appendPicturesToNewInstance(req, newInstance) {
+	var picturesArr = [];
+
+	//checking if req.files.Pictures is an array, it will be so if more than 1 pic was sent
+	if(!Array.isArray(req.files.Pictures)) {
+		pushToPicturesArr(picturesArr, req.files.Pictures.path);
+	}
+
+	else {
+		for (var i = 0; i < req.files.Pictures.length; i++) {
+			pushToPicturesArr(picturesArr, req.files.Pictures[i].path);
+		}
+	}
+
+	newInstance.Pictures = picturesArr;
+}
+
+function pushToPicturesArr(picturesArr, pathString) {
+	picturesArr.push(pathString.replace(/uploads\\/g, '/'));
 }

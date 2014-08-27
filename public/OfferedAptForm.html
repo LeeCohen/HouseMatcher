@@ -2,11 +2,11 @@
 <HTML>
    <HEAD>
       <TITLE>
-         A Small Hello 
+         OfferedApts
       </TITLE>
    </HEAD>
 <BODY>
-   <form method="post" action="">
+   <form method="post" enctype="multipart/form-data" action="http://localhost:3000/offeredApts">
    <br/>City: <input type="text" name="City"/>
    <br/>Neighborhood: <input type="text" name="Neighborhood"/>
    <br/>Street: <input type="text" name="Street"/>
@@ -24,6 +24,7 @@
    <br/>Furniture: <input type="checkbox" name="Furniture"/>
    <br/>AirConditioning: <input type="checkbox" name="AirConditioning"/>
    <br/>SunBoiler: <input type="checkbox" name="SunBoiler"/>
+   <br/>Pictures: <input type="file" name="Pictures" multiple/>
    <br/><input type="submit"/>
    </form>
 </BODY>
