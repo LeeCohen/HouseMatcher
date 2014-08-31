@@ -7,27 +7,26 @@
    </HEAD>
 <BODY>
    <form method="post" enctype="multipart/form-data" action="http://localhost:3000/searchOfferedApts">
-   <br/>City: <input type="text" name="City"/>
-   <br/>Neighborhood: <input type="text" name="Neighborhood"/>
-   <br/>Street: <input type="text" name="Street"/>
-   <br/>From HouseNumber: <input type="number" name="FromHouseNumber"/>
-   <br/>To HouseNumber: <input type="number" name="ToHouseNumber"/>
-   <br/>Max Price: <input type="number" name="MaxPrice"/>
-   <br/>Size: <input type="number" name="Size"/>
-   <br/>Min Rooms: <input type="number" name="MinRooms"/>
-   <br/>Max Rooms: <input type="number" name="MaxRooms"/>
-   <br/>Min Floor: <input type="number" name="MinFloor"/>
-   <br/>Max Floor: <input type="number" name="MaxFloor"/>
-   <br/>Parking: <input type="checkbox" name="Parking"/>
-   <br/>Elevator: <input type="checkbox" name="Elevator"/>
-   <br/>SafeRoom: <input type="checkbox" name="SafeRoom"/>
-   <br/>Balcony: <input type="checkbox" name="Balcony"/>
-   <br/>WindowsBars: <input type="checkbox" name="WindowsBars"/>
-   <br/>Pets: <input type="checkbox" name="Pets"/>
-   <br/>Furniture: <input type="checkbox" name="Furniture"/>
-   <br/>AirConditioning: <input type="checkbox" name="AirConditioning"/>
-   <br/>SunBoiler: <input type="checkbox" name="SunBoiler"/>
-   <br/><input type="submit"/>   
+   <br/>City: <input type="text" name="Location.City"/>
+   <br/>Neighborhood: <input type="text" name="Location.Neighborhood"/>
+   <br/>Street: <input type="text" name="Location.Street"/>
+   <br/>From HouseNumber: <input type="number" name="Properties.From_HouseNumber"/>
+   <br/>To HouseNumber: <input type="number" name="Properties.To_HouseNumber"/>
+   <br/>Max Price: <input type="number" name="Properties.Max_Price"/>
+   <br/>Size: <input type="number" name="Properties.Size"/>
+   <br/>Min Rooms: <input type="number" name="Properties.Min_Rooms"/>
+   <br/>Max Rooms: <input type="number" name="Properties.Max_Rooms"/>
+   <br/>Min Floor: <input type="number" name="Properties.Min_Floor"/>
+   <br/>Max Floor: <input type="number" name="Properties.Max_Floor"/>
+   <br/>Parking: <input type="checkbox" name="Utilities.Parking"/>
+   <br/>Elevator: <input type="checkbox" name="Utilities.Elevator"/>
+   <br/>SafeRoom: <input type="checkbox" name="Utilities.SafeRoom"/>
+   <br/>Balcony: <input type="checkbox" name="Utilities.Balcony"/>
+   <br/>WindowsBars: <input type="checkbox" name="Utilities.WindowsBars"/>
+   <br/>Furniture: <input type="checkbox" name="Utilities.Furniture"/>
+   <br/>AirConditioning: <input type="checkbox" name="Utilities.AirConditioning"/>
+   <br/>SunBoiler: <input type="checkbox" name="Utilities.SunBoiler"/>
+   <br/><input type="submit"/>  
    </form>
 </BODY>
 </HTML>

@@ -72,7 +72,21 @@ exports.searchOfferedApts = function(req, res) {
 	var query = OfferedApt.find();
 
 	for(key in desiredApt) {
-		query.where(key).equals(desiredApt[key]);
+		if(key === 'Properties.Min_Rooms') {
+			query.where('Properties.Rooms').gte(desiredApt['Properties.Min_Rooms']);
+		}
+
+		else if(key === 'Properties.Max_Rooms') {
+			query.where('Properties.Rooms').lte(desiredApt['Properties.Max_Rooms']);
+		}
+
+		else if(key === 'Properties.Max_Rooms') {
+			Max_Floor
+		}
+
+		else {
+			query.where(key).equals(desiredApt[key]);
+		}
 	}
 
 	query.exec(function(err, docs){
