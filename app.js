@@ -1,7 +1,6 @@
-//var flash 	   = require('connect-flash');
 var express    = require('express');
 var session = require('express-session'); 		
-var app        = express(); 				
+var app        = express();
 var bodyParser = require('body-parser');
 var multer  = require('multer');
 var mongoose   = require('mongoose');
@@ -21,7 +20,6 @@ app.use(express.static(__dirname + '/uploads'));
 mongoose.connect('mongodb://localhost:27017/project');
 
 require("./routes")(app, passport);
-
 
 app.listen(port, function() {
     console.log('Listening on port %d', port);

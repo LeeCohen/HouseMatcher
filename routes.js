@@ -6,6 +6,7 @@ var OfferedApt = require('./models/offeredApt.js');
 // include controllers
 var userController = require('./controllers/userController.js');
 var offeredAptsController = require('./controllers/offeredAptsController.js');
+var desiredAptsController = require('./controllers/desiredAptsController.js');
 
 module.exports = function (app, passport) {
   require('./login.js')(passport);
@@ -38,36 +39,10 @@ module.exports = function (app, passport) {
 
 
 ////////////////////// desired apts ////////////////////////////////
-   //  app.get('/desiredApts', function(req, res) {
-    // Apt.find({}, function(err, docs) {
-   //     res.json(docs);
-   //   });
-   //  });
-  // app.post('/createNewDesiredApt', function(req, res) {
-  //   var newDesiredApt = {};
 
-  //   console.log("OBJECT INOFRMATION FOR INSERTING NEW DISRED APT");
-  //   for (var object in req.body){
-  //     console.log(req.body[object]); // printing name of object for server debugging
-  //     newDesiredApt[object] = req.body[object];
-  //   }
+  app.get('/desiredApts', desiredAptsController.findAll);
 
-  //   var newDesiredAptInstance = new DesiredApt(newDesiredApt);
-
-  //   newDesiredAptInstance.save(function(error, data){
-  //     if(error){
-  //         res.json(error);
-  //     }
-  //     else{
-  //         res.json(data);
-  //     }
-  //   });
-  // });
-   //  app.get('/offeredApts', function(req, res) {
-   //      Apt.find({}, function(err, docs) {
-   //          res.json(docs);
-   //      });
-   //  });
+  app.post('/desiredApts', desiredAptsController.createNew);
 
 ////////////////////// offered apts ////////////////////////////////
 
@@ -80,17 +55,9 @@ module.exports = function (app, passport) {
   app.post('/searchOfferedApts', offeredAptsController.searchOfferedApts)
 
   app.get('/bla', function(req, res) {
-    var _City = "Tel Aviv";
-    var _Street = "Amos";
-    var callback = function(err, docs) {
-      res.json(docs);
-    }
-
-    OfferedApt
-    .find({City: _City })
-    .where('Street').equals(_Street)
-    .exec(callback);
+    res.json(OfferedApt.schema.paths);
   })
+
 }
 
 function ensureAuthenticated(req, res, next) {

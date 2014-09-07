@@ -8,7 +8,7 @@ var UsersSchema = new Schema({
 	Phone_Number: {type: String, required: false},
 	First_name: {type: String, required: false},
 	Last_name: {type: String, required: false},
-	OfferdApts: [Schema.ObjectId],
+	OfferedApts: [Schema.ObjectId],
 	DesiredApts: [Schema.ObjectId],
 	LikedApts:[Schema.ObjectId]
 });

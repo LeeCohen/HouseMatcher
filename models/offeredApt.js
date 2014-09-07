@@ -9,19 +9,18 @@ var OfferedAptSchema = new Schema({
 		Phone_Number: {type: String, required: false}
 	},
 
-	Location:{
+	Location: {
 		City: {type: String, required: true},
 		Neighborhood: {type: String},
 		Street: {type: String, required: false},
 		HouseNumber: {type: Number},
 	},
 
-	Properties:{
+	Properties: {
 		Price: {type: Number, required: false},
 		Size: {type: Number},
 		Rooms: {type: Number, required: false},
 		Floor: {type: Number},
-		Pictures : [String]
 	},
 	
 	Utilities: {
@@ -35,6 +34,7 @@ var OfferedAptSchema = new Schema({
 		SunBoiler: {type: Boolean}
 	},
 	
+	Pictures : [String],
 	Published_Date: {type: Date, default: Date.now }
 	
 });

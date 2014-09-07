@@ -12,12 +12,12 @@ var DesiredAptSchema = new mongoose.Schema({
 	Location: {
 		City: {type: String, required: true},
 		Neighborhood: {type: String},
-		Street: {type: String}
+		Street: {type: String},
+		From_HouseNumber: {type: Number},
+		To_HouseNumber: {type: Number}
 	},
 
 	Properties: {
-		From_HouseNumber: {type: Number},
-		To_HouseNumber: {type: Number},
 		Max_Price: {type: Number},
 		Size: {type: Number},
 		Max_Rooms: {type: Number},

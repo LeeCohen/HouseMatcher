@@ -1,4 +1,5 @@
 var OfferedApt = require('../models/offeredApt.js');
+var User = require('../models/user.js');
 var db = require('../db.js');
 var utils = require('../utils.js');
 
@@ -13,18 +14,21 @@ exports.findAll = function(req, res) {
 exports.createNew = function(req, res) {
     var newOfferedAptInstance = new OfferedApt(utils.buildNewObjFromReq(req));
 
+    utils.appendCreator(req, OfferedApt, newOfferedAptInstance.Creator);
+    console.log(newOfferedAptInstance);
     if(req.files.Pictures) {
     	// if pictures were sent
     	appendPicturesToNewInstance(req, newOfferedAptInstance);
     }
 
-    var createNewCallback = function(error, data){
+    var createNewCallback = function(error, newOfferedApt){
 		if(error) {
-		  res.json(error);
+			res.json(error);
 		}
 
 		else {
-		  res.json(data);
+			utils.updateUserWithNewApt(req.user, User, "OfferedApts", newOfferedApt);
+			res.json(newOfferedApt);
 		}
     }
 
@@ -68,28 +72,12 @@ function pushToPicturesArr(picturesArr, pathString) {
 }
 
 exports.searchOfferedApts = function(req, res) {
-	var desiredApt = utils.buildNewObjFromReq(req); // query from the user
-	var query = OfferedApt.find();
-
-	for(key in desiredApt) {
-		if(key === 'Properties.Min_Rooms') {
-			query.where('Properties.Rooms').gte(desiredApt['Properties.Min_Rooms']);
-		}
-
-		else if(key === 'Properties.Max_Rooms') {
-			query.where('Properties.Rooms').lte(desiredApt['Properties.Max_Rooms']);
-		}
-
-		else if(key === 'Properties.Max_Rooms') {
-			Max_Floor
-		}
-
-		else {
-			query.where(key).equals(desiredApt[key]);
-		}
+	var desiredAptFromUserSearch = utils.buildNewObjFromReq(req); // query from the user
+	var searchOfferedAptsCallback = function(err, docs){
+		res.json(docs);
 	}
 
-	query.exec(function(err, docs){
-		res.json(docs);
-	});
+	db.searchOfferedApts(desiredAptFromUserSearch, searchOfferedAptsCallback);
 }
+
+
