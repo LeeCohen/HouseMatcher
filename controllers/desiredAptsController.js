@@ -30,3 +30,27 @@ exports.createNew = function(req, res) {
 
     db.createNew(newDesiredAptInstance, createNewCallback);
 }
+
+exports.deleteDesiredApt = function(req, res) {
+	var deleteDesiredAptCallback = function(err) {
+		if(err) {
+			res.json(err);
+		}
+
+		else {
+			removeDesiredAptFromCreator(req.params.desiredAptId, req.user, res);
+		}
+	}
+
+	db.remove(DesiredApt, req.params.desiredAptId, deleteDesiredAptCallback);
+}
+
+function removeDesiredAptFromCreator(desiredAptId, user, res) {
+	//users have refs for their desiredApts, so need to remove those refs
+	var updateObj = {$pull: {'DesiredApts': desiredAptId}}
+	var removeDesiredAptFromCreatorCallback = function(err, numAffected) {
+		res.json('removed successfully');
+	}
+
+	db.update(User, user._id, updateObj, removeDesiredAptFromCreatorCallback);
+}

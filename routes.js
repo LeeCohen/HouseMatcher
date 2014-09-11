@@ -8,12 +8,14 @@ var userController = require('./controllers/userController.js');
 var offeredAptsController = require('./controllers/offeredAptsController.js');
 var desiredAptsController = require('./controllers/desiredAptsController.js');
 
+var utils = require('./utils.js');
+
 module.exports = function (app, passport) {
   require('./login.js')(passport);
 
   // set up routes
   app.get("/", ensureAuthenticated, function (req, res) {
-      res.send("Hello World");
+      res.sendfile("./welcome.html");
   });
 
   app.get('/login', function(req, res) {
@@ -33,8 +35,6 @@ module.exports = function (app, passport) {
 
   app.get('/users/:userId', ensureAuthenticated, userController.findById);
 
-  app.put('/users/:userId', userController.editUser);
-
   app.delete('/users/:userId', userController.deleteUser);
 
 
@@ -44,6 +44,8 @@ module.exports = function (app, passport) {
 
   app.post('/desiredApts', desiredAptsController.createNew);
 
+  app.delete('/desiredApts/:desiredAptId', desiredAptsController.deleteDesiredApt);
+
 ////////////////////// offered apts ////////////////////////////////
 
   app.get('/offeredApts', ensureAuthenticated, offeredAptsController.findAll);
@@ -52,12 +54,9 @@ module.exports = function (app, passport) {
 
   app.get('/getRecentOfferedApts', offeredAptsController.getRecentOfferedApts);
 
-  app.post('/searchOfferedApts', offeredAptsController.searchOfferedApts)
+  app.post('/searchOfferedApts', offeredAptsController.searchOfferedApts);
 
-  app.get('/bla', function(req, res) {
-    res.json(OfferedApt.schema.paths);
-  })
-
+  app.delete('/offeredApts/:offeredAptId', offeredAptsController.deleteOfferedApt);
 }
 
 function ensureAuthenticated(req, res, next) {

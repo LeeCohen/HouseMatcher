@@ -34,17 +34,8 @@ exports.createNew = function(req, res) {
     db.createNew(newUserInstance, createNewCallback);
 }
 
-exports.editUser = function(req, res) {
-	var id = req.params.userId;
-	var userFromReq = req.body;
-
-	User.findOneAndUpdate({ _id: id }, userFromReq, function(err, doc) {
-		res.json(doc);
-	});
-}
-
 exports.deleteUser = function(req, res) {
-	User.remove({ _id: req.params.userId }, function(err) {
+	var deleteUserCallback =  function(err) {
 		if(err) {
 			res.json(err);
 		}
@@ -52,6 +43,8 @@ exports.deleteUser = function(req, res) {
 		else {
 			res.json('removed successfully');
 		}
-	});
+	}
+
+	db.remove(User, req.params.userId, deleteUserCallback);
 }
 

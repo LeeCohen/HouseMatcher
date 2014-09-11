@@ -12,14 +12,14 @@ var OfferedAptSchema = new Schema({
 	Location: {
 		City: {type: String, required: true},
 		Neighborhood: {type: String},
-		Street: {type: String, required: false},
+		Street: {type: String, required: true},
 		HouseNumber: {type: Number},
 	},
 
 	Properties: {
-		Price: {type: Number, required: false},
+		Price: {type: Number, required: true},
 		Size: {type: Number},
-		Rooms: {type: Number, required: false},
+		Rooms: {type: Number, required: true},
 		Floor: {type: Number},
 	},
 	
@@ -34,9 +34,11 @@ var OfferedAptSchema = new Schema({
 		SunBoiler: {type: Boolean}
 	},
 	
-	Pictures : [String],
+	Pictures: [String],
 	Published_Date: {type: Date, default: Date.now }
 	
 });
+
+
 
 module.exports = mongoose.model('OfferedApt', OfferedAptSchema, 'project.OfferedApts');

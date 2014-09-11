@@ -15,7 +15,6 @@ exports.createNew = function(req, res) {
     var newOfferedAptInstance = new OfferedApt(utils.buildNewObjFromReq(req));
 
     utils.appendCreator(req, OfferedApt, newOfferedAptInstance.Creator);
-    console.log(newOfferedAptInstance);
     if(req.files.Pictures) {
     	// if pictures were sent
     	appendPicturesToNewInstance(req, newOfferedAptInstance);
@@ -28,6 +27,7 @@ exports.createNew = function(req, res) {
 
 		else {
 			utils.updateUserWithNewApt(req.user, User, "OfferedApts", newOfferedApt);
+			searchForMatchingDesiredApt(utils.buildNewObjFromReq(req));
 			res.json(newOfferedApt);
 		}
     }
@@ -47,7 +47,6 @@ exports.getRecentOfferedApts = function(req, res) {
 	}
 
 	db.getRecentApts(OfferedApt, getRecentCallback);
-
 }
 
 function appendPicturesToNewInstance(req, newInstance) {
@@ -80,4 +79,34 @@ exports.searchOfferedApts = function(req, res) {
 	db.searchOfferedApts(desiredAptFromUserSearch, searchOfferedAptsCallback);
 }
 
+function searchForMatchingDesiredApt(newOfferedApt) {
+	var searchForMatchingDesiredAptCallback = function(err, desiredApts) {
+		utils.notifyDesiredAptsCreators(newOfferedApt, desiredApts);
+	}
 
+	db.searchDesiredApts(newOfferedApt, searchForMatchingDesiredAptCallback);
+}
+
+exports.deleteOfferedApt = function(req, res) {
+	var deleteOfferedAptCallback = function(err) {
+		if(err) {
+			res.json(err);
+		}
+
+		else {
+			removeOfferedAptFromCreator(req.params.offeredAptId, req.user, res);
+		}
+	}
+
+	db.remove(OfferedApt, req.params.offeredAptId, deleteOfferedAptCallback);
+}
+
+function removeOfferedAptFromCreator(offeredAptId, user, res) {
+	//users have refs for their offeredApts, so need to remove those refs
+	var updateObj = {$pull: {'OfferedApts': offeredAptId}}
+	var removeOfferedAptFromCreatorCallback = function(err, numAffected) {
+		res.json('removed successfully');
+	}
+
+	db.update(User, user._id, updateObj, removeOfferedAptFromCreatorCallback);
+}

@@ -7,7 +7,7 @@ var LocalStrategy = require('passport-local').Strategy;
 module.exports = function (passport) {
 	passport.use(new LocalStrategy(function(username, password, next){
 		console.log('inside login with %s, %s', username, password);
-	    User.findOne({'username' : username}, function(err,user) {
+	    User.findOne({'Username' : username}, function(err,user) {
 			if(err) {
 				console.log("error");
 				return next(err);
@@ -18,8 +18,8 @@ module.exports = function (passport) {
 		            return next(null, false);
 		    }
 
-			var result = calcHash('sha1', password);
-			if (result === user.Hashed_password) {
+			//var result = calcHash('sha1', password);
+			if (password === user.Hashed_password) {
 				console.log("success");
 	        	return next(null, user);
 		    }
