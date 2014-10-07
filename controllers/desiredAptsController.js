@@ -14,6 +14,11 @@ exports.findAll = function(req, res) {
 exports.createNew = function(req, res) {
     var newDesiredAptInstance = new DesiredApt(utils.buildNewObjFromReq(req));
 
+    if(!req.user) {
+    	res.status(500).send('No user in session!');
+    	return false;
+    }
+    
     utils.appendCreator(req, DesiredApt, newDesiredAptInstance.Creator);
     console.log(newDesiredAptInstance);
 

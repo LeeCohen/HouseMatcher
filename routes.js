@@ -14,7 +14,7 @@ module.exports = function (app, passport) {
   require('./login.js')(passport);
 
   // set up routes
-  app.get("/", ensureAuthenticated, function (req, res) {
+  app.get("/", function (req, res) {
       res.sendfile("./welcome.html");
   });
 
@@ -57,6 +57,11 @@ module.exports = function (app, passport) {
   app.post('/searchOfferedApts', offeredAptsController.searchOfferedApts);
 
   app.delete('/offeredApts/:offeredAptId', offeredAptsController.deleteOfferedApt);
+
+  app.post('/bla', function(req, res) {
+    console.log(req.body);
+    res.end();
+  });
 }
 
 function ensureAuthenticated(req, res, next) {

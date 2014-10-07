@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
+<HTML>
+   <HEAD>
+   	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+      <TITLE>
+         Welcome
+      </TITLE>
+   </HEAD>
+<BODY>
+	<h1> Welcome </h1>
+	<p> This is a very awesome homepage </p>
+	<p> just kidding, only server side implemented, some test buttons with jquery down below </p>
+	<button id="deleteOfferedAptBtn"> deleteOfferedApt (by id) </button>
+	<input id="deleteOfferedAptLabel" type="text"/>
+	<br/><br/>
+	<button id="deleteDesiredAptBtn"> deleteDesiredApt (by id) </button>
+	<input id="deleteDesiredAptLabel" type="text"/>
+	<br/><br/>
+	<button id="deleteUserBtn"> deleteUser (by id) </button>
+	<input id="deleteUserLabel" type="text"/>
+	 <script>
+
+	$("#deleteOfferedAptBtn").click(function() {
+		var offeredAptId = $("#deleteOfferedAptLabel").val();
+		$.ajax({
+			    url: 'http://localhost:3000/offeredApts/' + offeredAptId,
+			    type: 'DELETE',
+			    success: function(result) {
+			        alert(result);
+			    }
+			});
+	});
+
+	$("#deleteDesiredAptBtn").click(function() {
+		var desiredAptId = $("#deleteDesiredAptLabel").val();
+		$.ajax({
+			    url: 'http://localhost:3000/desiredApts/' + desiredAptId,
+			    type: 'DELETE',
+			    success: function(result) {
+			        alert(result);
+			    }
+			});
+	});
+
+	$("#deleteUserBtn").click(function() {
+		var userId = $("#deleteUserLabel").val();
+		$.ajax({
+			    url: 'http://localhost:3000/users/' + userId,
+			    type: 'DELETE',
+			    success: function(result) {
+			        alert(result);
+			    }
+			});
+	});
+
+   	</script>
+</BODY>
+</HTML>

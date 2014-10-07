@@ -13,11 +13,21 @@ exports.findAll = function(req, res) {
 
 exports.createNew = function(req, res) {
     var newOfferedAptInstance = new OfferedApt(utils.buildNewObjFromReq(req));
+    var defaultPicturePath = 'default.jpg';
 
+    if(!req.user) {
+    	res.status(500).send('No user in session!');
+    	return false;
+    }
+    
     utils.appendCreator(req, OfferedApt, newOfferedAptInstance.Creator);
     if(req.files.Pictures) {
     	// if pictures were sent
     	appendPicturesToNewInstance(req, newOfferedAptInstance);
+    }
+
+    else {
+    	newOfferedAptInstance.Pictures = defaultPicturePath;
     }
 
     var createNewCallback = function(error, newOfferedApt){
@@ -52,7 +62,7 @@ exports.getRecentOfferedApts = function(req, res) {
 function appendPicturesToNewInstance(req, newInstance) {
 	var picturesArr = [];
 
-	//checking if req.files.Pictures is an array, it will be so if more than 1 pic was sent
+	//checking if req.files.Pictures is an array, it will be so if more than 1 pic were sent
 	if(!Array.isArray(req.files.Pictures)) {
 		pushToPicturesArr(picturesArr, req.files.Pictures.path);
 	}
@@ -67,7 +77,7 @@ function appendPicturesToNewInstance(req, newInstance) {
 }
 
 function pushToPicturesArr(picturesArr, pathString) {
-	picturesArr.push(pathString.replace(/uploads\\/g, '/'));
+	picturesArr.push(pathString.slice(8));
 }
 
 exports.searchOfferedApts = function(req, res) {

@@ -1,58 +1,718 @@
-<!DOCTYPE html PUBLIC "-//IETF//DTD HTML 2.0//EN">
-<HTML>
-   <HEAD>
-   	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
-      <TITLE>
-         Welcome
-      </TITLE>
-   </HEAD>
-<BODY>
-	<h1> Welcome </h1>
-	<p> This is a very awesome homepage </p>
-	<p> just kidding, only server side implemented, some test buttons with jquery down below </p>
-	<button id="deleteOfferedAptBtn"> deleteOfferedApt (by id) </button>
-	<input id="deleteOfferedAptLabel" type="text"/>
-	<br/><br/>
-	<button id="deleteDesiredAptBtn"> deleteDesiredApt (by id) </button>
-	<input id="deleteDesiredAptLabel" type="text"/>
-	<br/><br/>
-	<button id="deleteUserBtn"> deleteUser (by id) </button>
-	<input id="deleteUserLabel" type="text"/>
-	 <script>
+<!DOCTYPE html>
+<html lang="en">
 
-	$("#deleteOfferedAptBtn").click(function() {
-		var offeredAptId = $("#deleteOfferedAptLabel").val();
-		$.ajax({
-			    url: 'http://webedu10.mtacloud.co.il:3000/offeredApts/' + offeredAptId,
-			    type: 'DELETE',
-			    success: function(result) {
-			        alert(result);
-			    }
-			});
-	});
+<head>
 
-	$("#deleteDesiredAptBtn").click(function() {
-		var desiredAptId = $("#deleteDesiredAptLabel").val();
-		$.ajax({
-			    url: 'http://webedu10.mtacloud.co.il:3000/desiredApts/' + desiredAptId,
-			    type: 'DELETE',
-			    success: function(result) {
-			        alert(result);
-			    }
-			});
-	});
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-	$("#deleteUserBtn").click(function() {
-		var userId = $("#deleteUserLabel").val();
-		$.ajax({
-			    url: 'http://webedu10.mtacloud.co.il:3000/users/' + userId,
-			    type: 'DELETE',
-			    success: function(result) {
-			        alert(result);
-			    }
-			});
-	});
+    <title>HouseMatcher</title>
 
-   	</script>
-</BODY>
-</HTML>
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+<!--     <link href="css/carousel.css" rel="stylesheet"> -->
+    <style type="text/css" id="holderjs-style"></style>
+    <!-- jQuery Version 1.11.0 -->
+    <script src="js/jquery-1.11.0.js"></script>
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+      <a id="menu-toggle" href="#" class="btn btn-dark btn-lg toggle"><i class="fa fa-bars"></i></a>
+      <nav id="sidebar-wrapper">
+          <ul class="sidebar-nav">
+              <a id="menu-close" href="#" class="btn btn-light btn-lg pull-right toggle"><i class="fa fa-times"></i></a>
+              <li class="sidebar-brand">
+                  <a href="#top">HouseMatcher</a>
+              </li>
+              <li>
+                  <a href="#">Home</a>
+              </li>
+              <li>
+                  <a href="#RecentOfferedApts">Recent Offered Apts</a>
+              </li>
+              <li>
+                  <a href="#searchOfferedApts">Search Offered Apts</a>
+              </li>
+              <li>
+                  <a href="#publishNewOfferedApt">Publish New Offered Apt For Rental</a>
+              </li>
+              <li>
+                  <a href="#publishNewDesiredApt">Publish New Desired Apt For Rental</a>
+              </li>
+              <li>
+                  <a href="#footer">About</a>
+              </li>
+          </ul>
+      </nav>
+
+    <!-- Header -->
+    <header id="top" class="header">
+        <div class="text-vertical-center">
+            <h1>HouseMatcher</h1>
+            <h3>Find the apartment of your dreams!</h3>
+        </div>
+    </header>
+
+    <section id="RecentOfferedApts">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div>
+                        <h3>
+                            Recent Offered Apartments For Rental
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                </div>
+            </div><hr />
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="panel panel-default pan-property">
+                        <img class="img-responsive" src="img/telaviv3.jpg" alt="">
+                        <div class="panel-body">
+                            <h4>
+                                <a href="single.html" title="">2110 PROPERTY AADDRESS GOES HERE</a>
+                            </h4>
+                        </div>
+                        <div class="list-group">
+                            <span class="list-group-item">Beds <span class="pull-right">2</span></span> 
+                            <span class="list-group-item">Baths <span class="pull-right">2</span></span>
+                            <span class="list-group-item">House Size: <span class="pull-right">3200 sqft</span></span>
+                            <span class="list-group-item">Lot Size: <span class="pull-right">0.50 aqres</span></span>
+                        </div>
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <p><strong>$1.500.000</strong></p>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <p><a class="btn btn-md btn-success btn-block" href="#" title="">Read more</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="panel panel-default pan-property">
+                        <img class="img-responsive" src="img/telaviv3.jpg" alt="">
+                        <div class="panel-body">
+                            <h4>
+                                <a href="single.html" title="">2110 PROPERTY AADDRESS GOES HERE</a>
+                            </h4>
+                        </div>
+                        <div class="list-group">
+                            <span class="list-group-item">Beds <span class="pull-right">2</span></span> 
+                            <span class="list-group-item">Baths <span class="pull-right">2</span></span>
+                            <span class="list-group-item">House Size: <span class="pull-right">3200 sqft</span></span>
+                            <span class="list-group-item">Lot Size: <span class="pull-right">0.50 aqres</span></span>
+                        </div>
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <p><strong>$1.500.000</strong></p>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <p><a class="btn btn-md btn-success btn-block" href="#" title="">Read more</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="panel panel-default pan-property">
+                        <img class="img-responsive" src="img/telaviv3.jpg" alt="">
+                        <div class="panel-body">
+                            <h4>
+                                <a href="single.html" title="">2110 PROPERTY AADDRESS GOES HERE</a>
+                            </h4>
+                        </div>
+                        <div class="list-group">
+                            <span class="list-group-item">Beds <span class="pull-right">2</span></span> 
+                            <span class="list-group-item">Baths <span class="pull-right">2</span></span>
+                            <span class="list-group-item">House Size: <span class="pull-right">3200 sqft</span></span>
+                            <span class="list-group-item">Lot Size: <span class="pull-right">0.50 aqres</span></span>
+                        </div>
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <p><strong>$1.500.000</strong></p>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <p><a class="btn btn-md btn-success btn-block" href="#" title="">Read more</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </div><hr />
+        </div>
+    </section>
+    <section class="searchOfferedAptsSection" id="searchOfferedApts">
+        <div class="container">
+                    <div class="jumbotron jumbotron-custom">
+                        <h2>
+                                Offered Apartments For Rental
+                        </h2>
+                        <div class="row">
+                            <div class="container">
+                            <div class="panel panel-default" >
+                                <div class="panel-body">
+                                <!-- class="ng-pristine ng-valid" role="form" -->
+                                <form class="form-horizontal"  id="searchOfferedAptsForm" method="post" 
+                                action="http://localhost:3000/searchOfferedApts">
+                                    <div class="row">
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="City" name="Location.City">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Neighborhood" name="Location.Neighborhood">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Street" name="Location.Street">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="From House Number" name="Location.From_HouseNumber">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="To House Number" name="Location.To_HouseNumber">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Max Price" name="Properties.Max_Price">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Size" name="Properties.Size">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="From Rooms" name="Properties.Min_Rooms">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="To Rooms" name="Properties.Max_Rooms">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="From Floor" name="Properties.Min_Floor">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="To Floor" name="Properties.Max_Floor">
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div><!-- /.row this actually does not appear to be needed with the form-horizontal -->
+                                    <div class="checkbox">
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                            <input type="checkbox" id="searchOfferedApts.checkboxParking" name="Utilities.Parking">
+                                            <label for="searchOfferedApts.checkboxParking">
+                                                Parking
+                                            </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxElavator" name="Utilities.Elavator">
+                                        <label for="searchOfferedApts.checkboxElavator">
+                                            Elavator
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxSafeRoom" name="Utilities.SafeRoom">
+                                        <label for="searchOfferedApts.checkboxSafeRoom">
+                                            SafeRoom
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxBalcony" name="Utilities.Balcony">
+                                        <label for="searchOfferedApts.checkboxBalcony">
+                                            Balcony
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxWindowsBars" name="Utilities.WindowsBars">
+                                        <label for="searchOfferedApts.checkboxWindowsBars">
+                                            WindowsBars
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxFurniture" name="Utilities.Furniture">
+                                        <label for="searchOfferedApts.checkboxFurniture">
+                                            Furniture
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxAirConditioning" name="Utilities.AirConditioning">
+                                        <label for="searchOfferedApts.checkboxAirConditioning">
+                                            AirConditioning
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxSunBoiler" name="Utilities.SunBoiler">
+                                        <label for="searchOfferedApts.checkboxSunBoiler">
+                                            SunBoiler
+                                        </label>
+                                    </div>
+                                </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                             <button type="submit" class="btn btn-md pull-right btn-info">SEARCH</button>
+                                        </div>
+                                    </div>
+                                    </form>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+    <section id="seperator1" class="seperator">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p class="lead"><br/></p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+
+    <section class="publishNewOfferedApt" id="publishNewOfferedApt">
+        <div class="container">
+                    <div class="jumbotron jumbotron-custom">
+                        <div class="row">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                <h2>
+                                Publish A New Apartment For Rental
+                                </h2>
+                                <!-- class="ng-pristine ng-valid" role="form" -->
+                                <form class="form-horizontal" method="post" enctype="multipart/form-data" action="http://localhost:3000/bla">
+                                    <div class="row">
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="City" name="Location.City">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Neighborhood" name="Location.Neighborhood">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Street" name="Location.Street">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="House Number" name="Location.HouseNumber">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Price" name="Properties.Price">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Size" name="Properties.Size">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Rooms" name="Properties.Rooms">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Floor" name="Properties.Floor">
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div><!-- /.row this actually does not appear to be needed with the form-horizontal -->
+                                    <div class="checkbox">
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                            <input type="checkbox" id="publishNewOfferedApt.checkboxParking" name="Utilities.Parking">
+                                            <label for="publishNewOfferedApt.checkboxParking">
+                                                Parking
+                                            </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxElavator" name="Utilities.Elavator">
+                                        <label for="publishNewOfferedApt.checkboxElavator">
+                                            Elavator
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxSafeRoom" name="Utilities.SafeRoom">
+                                        <label for="publishNewOfferedApt.checkboxSafeRoom">
+                                            SafeRoom
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxBalcony" name="Utilities.Balcony">
+                                        <label for="publishNewOfferedApt.checkboxBalcony">
+                                            Balcony
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxWindowsBars" name="Utilities.WindowsBars">
+                                        <label for="publishNewOfferedApt.checkboxWindowsBars">
+                                            WindowsBars
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxFurniture" name="Utilities.Furniture">
+                                        <label for="publishNewOfferedApt.checkboxFurniture">
+                                            Furniture
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxAirConditioning" name="Utilities.AirConditioning">
+                                        <label for="publishNewOfferedApt.checkboxAirConditioning">
+                                            AirConditioning
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxSunBoiler" name="Utilities.SunBoiler">
+                                        <label for="publishNewOfferedApt.checkboxSunBoiler">
+                                            SunBoiler
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-6">
+                                    <input type="file" name="Pictures" multiple/>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-12">
+                                    <button type="submit" class="btn btn-md pull-right btn-info">SEARCH</button>
+                                </div>
+                            </div>  
+                                    </div>
+                                    </form>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+    </section>
+
+    <section id="seperator2" class="seperator">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p class="lead"><br/></p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+
+
+    <section class="publishNewDesiredApt" id="publishNewDesiredApt">
+        <div class="container">
+                    <div class="jumbotron jumbotron-custom">
+                        <h2>
+                                Publish A New Desired Apartment
+                        </h2>
+                        <p>
+                                Here is the part you tell us what apartment you want. As soon as an apartment matching to what you want will come up, we'll email you!
+                        </p>
+                        <div class="row">
+                            <div class="container">
+                            <div class="panel panel-default" >
+                                <div class="panel-body">
+                                            <form class="form-horizontal" method="post" enctype="multipart/form-data" action="http://localhost:3000/bla">
+                                                <div class="row">
+                                                  <div class="col-sm-6 col-lg-4">
+                                                    <div class="form-group">
+                                                      <div class="col-md-12">
+                                                        <input type="text" class="form-control" placeholder="City" name="Location.City">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-sm-6 col-lg-4">
+                                                    <div class="form-group">
+
+                                                      <div class="col-md-12">
+                                                        <input type="text" class="form-control" placeholder="Neighborhood" name="Location.Neighborhood">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-sm-6 col-lg-4">
+                                                    <div class="form-group">
+                                                      <div class="col-md-12">
+                                                        <input type="text" class="form-control" placeholder="Street" name="Location.Street">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-sm-6 col-lg-4">
+                                                    <div class="form-group">
+                                                      <div class="col-md-12">
+                                                        <input type="text" class="form-control" placeholder="From House Number" name="Location.From_HouseNumber">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-sm-6 col-lg-4">
+                                                    <div class="form-group">
+                                                      <div class="col-md-12">
+                                                        <input type="text" class="form-control" placeholder="To House Number" name="Location.To_HouseNumber">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-sm-6 col-lg-4">
+                                                    <div class="form-group">
+                                                      <div class="col-md-12">
+                                                        <input type="text" class="form-control" placeholder="Max Price" name="Properties.Max_Price">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-sm-6 col-lg-4">
+                                                    <div class="form-group">
+                                                      <div class="col-md-12">
+                                                        <input type="text" class="form-control" placeholder="Size" name="Properties.Size">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-sm-6 col-lg-4">
+                                                    <div class="form-group">
+                                                      <div class="col-md-12">
+                                                        <input type="text" class="form-control" placeholder="From Rooms" name="Properties.Min_Rooms">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-sm-6 col-lg-4">
+                                                    <div class="form-group">
+                                                      <div class="col-md-12">
+                                                        <input type="text" class="form-control" placeholder="To Rooms" name="Properties.Max_Rooms">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-sm-6 col-lg-4">
+                                                    <div class="form-group">
+                                                      <div class="col-md-12">
+                                                        <input type="text" class="form-control" placeholder="From Floor" name="Properties.Min_Floor">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                  <div class="col-sm-6 col-lg-4">
+                                                    <div class="form-group">
+                                                      <div class="col-md-12">
+                                                        <input type="text" class="form-control" placeholder="To Floor" name="Properties.Max_Floor">
+                                                      </div>
+                                                    </div>
+                                                  </div>
+                                                </div><!-- /.row this actually does not appear to be needed with the form-horizontal -->
+                                                <div class="checkbox">
+                                                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                                        <input type="checkbox" id="publishNewDesiredApt.checkboxParking" name="Utilities.Parking">
+                                                        <label for="publishNewDesiredApt.checkboxParking">
+                                                            Parking
+                                                        </label>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                                    <input type="checkbox" id="publishNewDesiredApt.checkboxElavator" name="Utilities.Elavator">
+                                                    <label for="publishNewDesiredApt.checkboxElavator">
+                                                        Elavator
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                                    <input type="checkbox" id="publishNewDesiredApt.checkboxSafeRoom" name="Utilities.SafeRoom">
+                                                    <label for="publishNewDesiredApt.checkboxSafeRoom">
+                                                        SafeRoom
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                                    <input type="checkbox" id="publishNewDesiredApt.checkboxBalcony" name="Utilities.Balcony">
+                                                    <label for="publishNewDesiredApt.checkboxBalcony">
+                                                        Balcony
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                                    <input type="checkbox" id="publishNewDesiredApt.checkboxWindowsBars" name="Utilities.WindowsBars">
+                                                    <label for="publishNewDesiredApt.checkboxWindowsBars">
+                                                        WindowsBars
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                                    <input type="checkbox" id="checkboxFurniture" name="Utilities.Furniture">
+                                                    <label for="checkboxFurniture">
+                                                        Furniture
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                                    <input type="checkbox" id="publishNewDesiredApt.checkboxAirConditioning" name="Utilities.AirConditioning">
+                                                    <label for="publishNewDesiredApt.checkboxAirConditioning">
+                                                        AirConditioning
+                                                    </label>
+                                                </div>
+                                                <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                                    <input type="checkbox" id="publishNewDesiredApt.checkboxSunBoiler" name="Utilities.SunBoiler">
+                                                    <label for="publishNewDesiredApt.checkboxSunBoiler">
+                                                        SunBoiler
+                                                    </label>
+                                                </div>
+                                            </div>
+                                                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                                         <button type="submit" class="btn btn-md pull-right btn-info">SEARCH</button>
+                                                    </div>
+                                                </div>
+                                                </form>
+                                                </div><!-- /.container -->
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 text-center">
+                    <h4><strong>Start Bootstrap</strong>
+                    </h4>
+                    <p>3481 Melrose Place<br>Beverly Hills, CA 90210</p>
+                    <ul class="list-unstyled">
+                        <li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>
+                        <li><i class="fa fa-envelope-o fa-fw"></i>  <a href="mailto:name@example.com">name@example.com</a>
+                        </li>
+                    </ul>
+                    <br>
+                    <ul class="list-inline">
+                        <li>
+                            <a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>
+                        </li>
+                    </ul>
+                    <hr class="small">
+                    <p class="text-muted">Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script>
+    // Closes the sidebar menu
+    $("#menu-close").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Opens the sidebar menu
+    $("#menu-toggle").click(function(e) {
+        e.preventDefault();
+        $("#sidebar-wrapper").toggleClass("active");
+    });
+
+    // Scrolls to the selected menu item on the page
+    $(function() {
+        $('a[href*=#]:not([href=#])').click(function() {
+            if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') || location.hostname == this.hostname) {
+
+                var target = $(this.hash);
+                target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
+                if (target.length) {
+                    $('html,body').animate({
+                        scrollTop: target.offset().top
+                    }, 1000);
+                    return false;
+                }
+            }
+        });
+    });
+    </script>
+    
+</body>
+
+</html>

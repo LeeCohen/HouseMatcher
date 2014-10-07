@@ -1,8 +1,8 @@
 var express    = require('express');
-var session = require('express-session'); 		
+var session    = require('express-session'); 		
 var app        = express();
 var bodyParser = require('body-parser');
-var multer  = require('multer');
+var multer 	   = require('multer');
 var mongoose   = require('mongoose');
 var passport   = require('passport');
 var port 	   = process.env.PORT || 3000;

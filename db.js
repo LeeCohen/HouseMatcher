@@ -21,7 +21,7 @@ exports.update = function(model, idParam, updateObj, callback) {
 }
 
 exports.getRecentApts = function(model, callback) {
-	var numOfDocsToReturn = 10;
+	var numOfDocsToReturn = 3;
 
 	model
 	.find({})

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Offered Apartments For Rental</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/awesome-bootstrap-checkbox.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/stylish-portfolio.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome-4.1.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+
+<!--     <link href="css/carousel.css" rel="stylesheet"> -->
+    <style type="text/css" id="holderjs-style"></style>
+    <!-- jQuery Version 1.11.0 -->
+    <script src="js/jquery-1.11.0.js"></script>
+
+    <script src="js/OfferedAptsSearchResults.js"></script>
+    <script src="js/underscore.js"></script>
+
+</head>
+
+<body>
+    <section id="RecentOfferedApts">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div>
+                        <h3>
+                            Search Results For Offered Apartments For Rental
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                </div>
+            </div><hr />
+            <div class="row">
+                <div class="OfferedAptsSearchResultsTemplateInjectionPoint"></div>
+           </div>
+        </div>
+    </section>
+
+    <script type="text/template" id="OfferedAptsSearchResults-Template">
+        <% _.each(offeredApts, function(offeredApt) { %>
+            <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <div class="panel panel-default pan-property">
+                        // <img class="img-responsive" src= <%= offeredApt.Pictures[0] %> alt="">
+                        <div class="list-group">
+                            <span class="list-group-item">City  <span class="pull-right"><%- offeredApt.Location.City %></span></span>
+                            <span class="list-group-item">Street  <span class="pull-right"><%- offeredApt.Location.Street %></span></span>
+                            <span class="list-group-item">House Number  <span class="pull-right"><%- offeredApt.Location.HouseNumber %></span></span>
+                            <span class="list-group-item">Rooms  <span class="pull-right"><%- offeredApt.Properties.Rooms %></span></span>
+                            <span class="list-group-item">Floor  <span class="pull-right"><%- offeredApt.Properties.Floor %></span></span> 
+                            <span class="list-group-item">Price  <span class="pull-right"><%- offeredApt.Properties.Price %></span></span>
+                        </div>
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <p><strong>$1.500.000</strong></p>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <p><a class="btn btn-md btn-success btn-block" href="#" title="">Read more</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+        <% }); %>
+    </script>
+
+</body>
+</html>

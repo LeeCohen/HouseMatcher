@@ -5,8 +5,10 @@ exports.buildNewObjFromReq = function(req) {
 
     console.log("OBJECT INOFRMATION");
     for (var key in req.body){
-		console.log(key + ': ' + req.body[key]); // printing for server debugging
-		newObj[key] = req.body[key];
+		if(req.body[key] !== '') {
+			console.log(key + ': ' + req.body[key]); // printing for server debugging
+			newObj[key] = req.body[key];
+		}
     }
 
     return newObj;
