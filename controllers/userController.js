@@ -27,7 +27,7 @@ exports.createNew = function(req, res) {
 		}
 
 		else{
-		  res.json(data);
+		  res.redirect('/login');
 		}
     }
 

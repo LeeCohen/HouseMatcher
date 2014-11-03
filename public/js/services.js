@@ -4,32 +4,19 @@
 
 var houseMatcherServices = angular.module('houseMatcherServices', []);
 
-houseMatcherServices.factory('SearchOfferedApts', [
-  function(){
-  	var offeredApts;
-
-  	var setOfferedApts = function(i_offeredApts) {
-  		offeredApts = i_offeredApts;
-  	}
-
-  	var getOfferedApts = function() {
-  		return offeredApts;
-  	}
+houseMatcherServices.factory('FormUpload', ['$http', function ($http) {
+    var sendForm = function(formData, uploadUrl, successFunc, errorFunc){
+        // formData.append('Pictures', file);
+        $http.post(uploadUrl, formData, {
+            transformRequest: angular.identity,
+            headers: {'Content-Type': undefined}
+        })
+        .success(successFunc)
+        .error(errorFunc);
+    }
 
     return {
-    	setOfferedApts: setOfferedApts,
-    	getOfferedApts: getOfferedApts
+      sendForm: sendForm
     }
-  }]);
 
-houseMatcherServices.factory('FormDataObject', function() {
-	return function(data) {
-		var fd = new FormData();
-
-		angular.forEach(data, function(value, key) {
-		fd.append(key, value);
-		});
-
-		return fd;
-	};
-});
+}]);

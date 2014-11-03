@@ -1,0 +1,49 @@
+    <section class="SingleOfferedApt">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 col-centered">
+                    <div class="panel panel-default pan-property">
+                        <img class="img-responsive" ng-src= "{{offeredApt.Pictures[0]}}" alt="">
+                        <div class="panel-body">
+                            
+                        </div>
+                        <div class="list-group">
+                            
+                            <span class="list-group-item" ng-show="offeredApt.Location.City">City <span class="pull-right">
+                                {{offeredApt.Location.City}} </span></span>
+                            <span class="list-group-item" ng-show="offeredApt.Location.Neighborhood">Neighborhood <span class="pull-right">
+                                {{offeredApt.Location.Neighborhood}} </span></span>
+                            <span class="list-group-item" ng-show="offeredApt.Location.Street">Street <span class="pull-right">
+                                {{offeredApt.Location.Street}} </span></span>
+                            <span class="list-group-item" ng-show="offeredApt.Location.HouseNumber">HouseNumber <span class="pull-right">
+                                {{offeredApt.Location.HouseNumber}} </span></span>
+                            <span class="list-group-item" ng-show="offeredApt.Properties.Price">Price <span class="pull-right">
+                                {{offeredApt.Properties.Price}} </span></span> 
+                            <span class="list-group-item" ng-show="offeredApt.Properties.Rooms">Rooms <span class="pull-right">
+                                {{offeredApt.Properties.Rooms}} </span></span> 
+                            <span class="list-group-item" ng-show="offeredApt.Properties.Size">Size <span class="pull-right">
+                                {{offeredApt.Properties.Size}} </span></span> 
+                            <span class="list-group-item" ng-show="offeredApt.Properties.Floor">Floor <span class="pull-right">
+                                {{offeredApt.Properties.Floor}} </span></span> 
+                            <span class="list-group-item" ng-show="offeredApt.Utilities.Parking">Parking <span class="pull-right">
+                                <span class="glyphicon glyphicon-ok"></span> </span></span>
+                            <span class="list-group-item" ng-show="offeredApt.Utilities.Elevator">Elevator <span class="pull-right"> </span></span> 
+                            <span class="list-group-item" ng-show="offeredApt.Utilities.SafeRoom">SafeRoom <span class="pull-right"> </span></span> 
+                            <span class="list-group-item" ng-show="offeredApt.Utilities.Balcony">Balcony <span class="pull-right"> </span></span> 
+                            <span class="list-group-item" ng-show="offeredApt.Utilities.WindowsBars">WindowsBars <span class="pull-right">
+                            </span></span> 
+                            <span class="list-group-item" ng-show="offeredApt.Utilities.Furniture">Furniture <span class="pull-right"> </span></span> 
+                            <span class="list-group-item" ng-show="offeredApt.Utilities.AirConditioning">AirConditioning <span class="pull-right">
+                            </span></span> 
+                            <span class="list-group-item" ng-show="offeredApt.Utilities.SunBoiler">SunBoiler <span class="pull-right"> </span></span>
+                            <span class="list-group-item"><strong>Posted By <span class="pull-right"> {{offeredApt.Creator.First_name}} 
+                                {{offeredApt.Creator.Last_name}}  </strong></span></span> 
+                            <span class="list-group-item"><strong>Email <span class="pull-right"> {{offeredApt.Creator.Email}} 
+                            </strong></span></span>  
+
+                        </div>
+                    </div>
+                </div>
+            </div><hr />
+        </div>
+    </section>

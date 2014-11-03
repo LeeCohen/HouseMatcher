@@ -24,7 +24,7 @@ exports.createNew = function(req, res) {
 
     var createNewCallback = function(error, newDesiredApt){
 		if(error) {
-			res.json(error);
+			res.status(500).json(error);
 		}
 
 		else {

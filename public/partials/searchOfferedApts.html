@@ -1,0 +1,225 @@
+    <section class="searchOfferedAptsSection">
+        <div class="container">
+                    <div class="jumbotron jumbotron-custom">
+                        <h2>
+                                Search Offered Apartments For Rental
+                        </h2>
+                        <div class="row">
+                            <div class="container">
+                            <div class="panel panel-default" >
+                                <div class="panel-body">
+                                <!-- class="ng-pristine ng-valid" role="form" -->
+                                <form class="form-horizontal"  id="searchOfferedAptsForm" >
+                                    <div class="row">
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="City" name="Location.City" 
+                                            ng-model="myFormData.Location.City">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Neighborhood" name="Location.Neighborhood" 
+                                            ng-model="myFormData.Location.Neighborhood">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Street" name="Location.Street" 
+                                            ng-model="myFormData.Location.Street">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="From House Number" name="Location.From_HouseNumber" 
+                                            ng-model="myFormData.Location.From_HouseNumber">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="To House Number" name="Location.To_HouseNumber" 
+                                            ng-model="myFormData.Location.To_HouseNumber">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Max Price" name="Properties.Max_Price" 
+                                            ng-model="myFormData.Properties.Max_Price">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Size" name="Properties.Size" 
+                                            ng-model="myFormData.Properties.Size">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="From Rooms" name="Properties.Min_Rooms" 
+                                            ng-model="myFormData.Properties.Min_Rooms">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="To Rooms" name="Properties.Max_Rooms" 
+                                            ng-model="myFormData.Properties.Max_Rooms"> 
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="From Floor" name="Properties.Min_Floor" 
+                                            ng-model="myFormData.Properties.Min_Floor">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-4">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="To Floor" name="Properties.Max_Floor" 
+                                            ng-model="myFormData.Properties.Max_Floor">
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div><!-- /.row this actually does not appear to be needed with the form-horizontal -->
+                                    <div class="checkbox">
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                            <input type="checkbox" id="searchOfferedApts.checkboxParking" name="Utilities.Parking" 
+                                            ng-model="myFormData.Utilities.Parking">
+                                            <label for="searchOfferedApts.checkboxParking">
+                                                Parking
+                                            </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxElavator" name="Utilities.Elavator" 
+                                        ng-model="myFormData.Utilities.Elavator">
+                                        <label for="searchOfferedApts.checkboxElavator">
+                                            Elavator
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxSafeRoom" name="Utilities.SafeRoom" 
+                                        ng-model="myFormData.Utilities.SafeRoom">
+                                        <label for="searchOfferedApts.checkboxSafeRoom">
+                                            SafeRoom
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxBalcony" name="Utilities.Balcony" 
+                                        ng-model="myFormData.Utilities.Balcony">
+                                        <label for="searchOfferedApts.checkboxBalcony">
+                                            Balcony
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxWindowsBars" name="Utilities.WindowsBars" 
+                                        ng-model="myFormData.Utilities.WindowsBars">
+                                        <label for="searchOfferedApts.checkboxWindowsBars">
+                                            WindowsBars
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxFurniture" name="Utilities.Furniture" 
+                                        ng-model="myFormData.Utilities.Furniture">
+                                        <label for="searchOfferedApts.checkboxFurniture">
+                                            Furniture
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxAirConditioning" name="Utilities.AirConditioning" 
+                                        ng-model="myFormData.Utilities.AirConditioning">
+                                        <label for="searchOfferedApts.checkboxAirConditioning">
+                                            AirConditioning
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="searchOfferedApts.checkboxSunBoiler" name="Utilities.SunBoiler" 
+                                        ng-mdoel="myFormData.Utilities.SunBoiler">
+                                        <label for="searchOfferedApts.checkboxSunBoiler">
+                                            SunBoiler
+                                        </label>
+                                    </div>
+                                </div>
+                                        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                                             <button type="button" ng-click="searchOfferedApts()" class="btn btn-md pull-right btn-info">SEARCH</button>
+                                        </div>
+                                    </div>
+                                    </form>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </div>
+                </div>
+      </div>
+    </section>
+    <section class="seperator">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p class="lead"><br/></p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div>
+        <!-- /.container -->
+    </section>
+    <section class="searchResults">
+      <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div>
+                        <h3>
+                            {{myFormData.Properties.Max_Floor}} Results:
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                </div>
+            </div><hr />
+      <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-repeat="apt in searchResults">
+                    <div class="panel panel-default pan-property">
+                        <img class="img-responsive" ng-src= "{{apt.Pictures[0]}}" alt="">
+                        <div class="panel-body">
+                            
+                        </div>
+                        <div class="list-group">
+                            <span class="list-group-item">Rooms <span class="pull-right">{{apt.Properties.Rooms}} </span></span> 
+                            <span class="list-group-item">City <span class="pull-right"> {{apt.Location.City}} </span></span>
+                            <span class="list-group-item">Street <span class="pull-right"> {{apt.Location.Street}} </span></span>
+                            <span class="list-group-item">HouseNumber <span class="pull-right"> {{apt.Location.HouseNumber}} </span></span>
+                        </div>
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <p><strong>{{apt.Properties.Price}} NIS</strong></p>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <p><a class="btn btn-md btn-success btn-block" ng-href="#singleOfferedApt/{{apt._id}}" title="">Read more</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+      </div>
+    </div>
+    </section>

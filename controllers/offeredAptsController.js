@@ -11,6 +11,14 @@ exports.findAll = function(req, res) {
 	db.findAll(OfferedApt, findAllCallback);
 }
 
+exports.getOfferedAptById = function(req, res) {
+	var findByIdCallback = function(err, doc) {
+		res.json(doc);
+	}
+
+	db.findById(OfferedApt, req.params.offeredAptId, findByIdCallback);
+}
+
 exports.createNew = function(req, res) {
     var newOfferedAptInstance = new OfferedApt(utils.buildNewObjFromReq(req));
     var defaultPicturePath = 'default.jpg';
@@ -32,7 +40,7 @@ exports.createNew = function(req, res) {
 
     var createNewCallback = function(error, newOfferedApt){
 		if(error) {
-			res.json(error);
+			res.status(500).json(error);
 		}
 
 		else {

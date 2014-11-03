@@ -1,0 +1,159 @@
+    <section class="publishNewOfferedApt">
+        <div class="container">
+                    <div class="jumbotron jumbotron-custom">
+                        <div class="row">
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                <h2>
+                                Publish A New Apartment For Rental
+                                </h2>
+                                <!-- class="ng-pristine ng-valid" role="form" -->
+                                <form class="form-horizontal">
+                                    <div class="row">
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="City" name="Location.City"
+                                             ng-model="myFormData.Location.City">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Neighborhood" name="Location.Neighborhood"
+                                             ng-model="myFormData.Location.Neighborhood">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Street" name="Location.Street"
+                                             ng-model="myFormData.Location.Street">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="House Number" name="Location.HouseNumber"
+                                             ng-model="myFormData.Location.HouseNumber">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Price" name="Properties.Price"
+                                             ng-model="myFormData.Properties.Price">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Size" name="Properties.Size"
+                                             ng-model="myFormData.Properties.Size">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Rooms" name="Properties.Rooms"
+                                             ng-model="myFormData.Properties.Rooms">
+                                          </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-sm-6 col-lg-6">
+                                        <div class="form-group">
+                                          <div class="col-md-12">
+                                            <input type="text" class="form-control" placeholder="Floor" name="Properties.Floor"
+                                             ng-model="myFormData.Properties.Floor">
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div><!-- /.row this actually does not appear to be needed with the form-horizontal -->
+                                    <div class="checkbox">
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                            <input type="checkbox" id="publishNewOfferedApt.checkboxParking" name="Utilities.Parking" 
+                                             ng-model="myFormData.Utilities.Parking">
+                                            <label for="publishNewOfferedApt.checkboxParking">
+                                                Parking
+                                            </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxElavator" name="Utilities.Elavator"
+                                         ng-model="myFormData.Utilities.Elavator">
+                                        <label for="publishNewOfferedApt.checkboxElavator">
+                                            Elavator
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxSafeRoom" name="Utilities.SafeRoom"
+                                         ng-model="myFormData.Utilities.SafeRoom">
+                                        <label for="publishNewOfferedApt.checkboxSafeRoom">
+                                            SafeRoom
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxBalcony" name="Utilities.Balcony"
+                                         ng-model="myFormData.Utilities.Balcony">
+                                        <label for="publishNewOfferedApt.checkboxBalcony">
+                                            Balcony
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxWindowsBars" name="Utilities.WindowsBars"
+                                         ng-model="myFormData.Utilities.WindowsBars">
+                                        <label for="publishNewOfferedApt.checkboxWindowsBars">
+                                            WindowsBars
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxFurniture" name="Utilities.Furniture"
+                                         ng-model="myFormData.Utilities.Furniture">
+                                        <label for="publishNewOfferedApt.checkboxFurniture">
+                                            Furniture
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxAirConditioning" name="Utilities.AirConditioning"
+                                         ng-model="myFormData.Utilities.AirConditioning">
+                                        <label for="publishNewOfferedApt.checkboxAirConditioning">
+                                            AirConditioning
+                                        </label>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-12 col-md-2 col-lg-3">
+                                        <input type="checkbox" id="publishNewOfferedApt.checkboxSunBoiler" name="Utilities.SunBoiler"
+                                         ng-model="myFormData.Utilities.SunBoiler">
+                                        <label for="publishNewOfferedApt.checkboxSunBoiler">
+                                            SunBoiler
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-xs-12 col-sm-6 col-md-12 col-lg-6">
+                                    Picture:<input type="file" file-model="myFile"/>
+                                </div>
+                                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+                                  <div class="panel-body" ng-show="publishSuccess">
+                                    <h4>Thank you for using HouseMatcher</h4>
+                                  </div>
+                                  <div class="panel-body" ng-show="publishError">
+                                    <h4>Oops, something bad happend</h4>
+                                  </div>
+                                </div>
+                                <div class="col-xs-8 col-sm-6 col-md-8 col-lg-8">
+                                    <button type="button" ng-click="publishNewOfferedApt()" class="btn btn-md pull-right btn-info">PUBLISH</button>
+                                </div>
+                            </div>  
+                                    </div>
+                                    </form>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+    </section>

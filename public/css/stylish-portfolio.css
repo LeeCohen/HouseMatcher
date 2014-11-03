@@ -17,11 +17,15 @@ body {
 }
 
 .publishNewOfferedApt{
+    width: 100%;
+    height: 100%;
     background: url('../img/telaviv3.jpg') center transparent no-repeat;
 }
 
 
 .publishNewDesiredApt{
+    width: 100%;
+    height: 100%;
     background: url('../img/rotshild_blvd.jpg') bottom right transparent no-repeat;
 }
 

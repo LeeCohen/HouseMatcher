@@ -8,7 +8,7 @@
     <meta name="author" content="">
     <link rel="icon" href="http://getbootstrap.com/favicon.ico">
 
-    <title>Signin</title>
+    <title>Signup</title>
 
     <!-- Bootstrap core CSS -->
     <link href="login_files/bootstrap.css" rel="stylesheet">
@@ -34,12 +34,14 @@
 
     <div class="container">
 
-      <form class="form-signin" role="form" method="post" action="http://localhost:3000/login">
-        <h2 class="form-signin-heading">Please sign in</h2>
-        <input class="form-control" placeholder="Username" required="" autofocus="" type="text", name="username">
-        <input class="form-control" placeholder="Password" required="" type="password", name="password">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
-        or <a href="http://localhost:3000/signup"> Sign Up </a>
+      <form class="form" role="form" method="post" action="http://localhost:3000/users">
+        <h2 class="form-signin-heading">Signup</h2>
+        <input class="form-control" placeholder="Username" required="" autofocus="" type="text", name="Username"/>
+        <input class="form-control" placeholder="Password" required="" type="password" name="Hashed_password"/>
+        <input class="form-control" placeholder="Email" required="" type="email", name="Email"/>
+        <input class="form-control" placeholder="First Name" required="" type="text" name="First_name"/>
+        <input class="form-control" placeholder="Last Name" required="" type="text", name="Last_name"/>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
       </form>
 
     </div> <!-- /container -->

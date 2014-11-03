@@ -1,0 +1,41 @@
+    <section class="RecentOfferedApts">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div>
+                        <h3>
+                            Recent Offered Apartments For Rental
+                        </h3>
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                </div>
+            </div><hr />
+            <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4" ng-repeat="apt in recentOfferedApts">
+                    <div class="panel panel-default pan-property">
+                        <img class="img-responsive" ng-src= "{{apt.Pictures[0]}}" alt="">
+                        <div class="panel-body">
+                            
+                        </div>
+                        <div class="list-group">
+                            <span class="list-group-item">Rooms <span class="pull-right">{{apt.Properties.Rooms}} </span></span> 
+                            <span class="list-group-item">City <span class="pull-right"> {{apt.Location.City}} </span></span>
+                            <span class="list-group-item">Street <span class="pull-right"> {{apt.Location.Street}} </span></span>
+                            <span class="list-group-item">HouseNumber <span class="pull-right"> {{apt.Location.HouseNumber}} </span></span>
+                        </div>
+                                <div class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <p><strong>{{apt.Properties.Price}} NIS</strong></p>
+                                        </div>
+                                        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+                                            <p><a class="btn btn-md btn-success btn-block" ng-href="#singleOfferedApt/{{apt._id}}" title="">Read more</a></p>
+                                        </div>
+                                    </div>
+                                </div>
+                    </div>
+                </div>
+            </div><hr />
+        </div>
+    </section>
